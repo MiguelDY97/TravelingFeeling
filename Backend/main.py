@@ -2,12 +2,14 @@ from fastapi import FastAPI
 from database.conexion import obtener_conexion
 from routers.usuarios import router as usuarios_router
 from routers.destinos import router as destinos_router
+from routers.reservas import router as reservas_router
 
 app = FastAPI(
     title="TravelingFeeling API",
     version="1.0"
 )
 app.include_router(usuarios_router)
+app.include_router(reservas_router)
 app.include_router(destinos_router)
 
 @app.get("/")
