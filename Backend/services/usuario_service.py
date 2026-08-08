@@ -1,7 +1,6 @@
 from fastapi import HTTPException
 import repositories.usuario_repository as usuario_repository
 
-
 def obtener_usuarios():
 
     try:

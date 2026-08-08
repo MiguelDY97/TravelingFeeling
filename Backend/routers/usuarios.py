@@ -1,4 +1,4 @@
-from fastapi import APIRouter,HTTPException
+from fastapi import APIRouter
 from models.usuario import Usuario
 from database.conexion import obtener_conexion
 import services.usuario_service as usuario_service
