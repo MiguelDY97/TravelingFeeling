@@ -6,7 +6,6 @@ def listar_destinos():
     cursor = None
 
     try:
-
         conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
 
@@ -59,15 +58,14 @@ def crear_destino(destino):
 
         sql = """
         INSERT INTO destinos
-        (nombre, descripcion, ciudad, pais, precio, cupos_disponibles, imagen)
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        (nombre, descripcion, ciudad, precio, cupos_disponibles, imagen)
+        VALUES (%s, %s, %s, %s, %s, %s)
         """
 
         valores = (
             destino.nombre,
             destino.descripcion,
             destino.ciudad,
-            destino.pais,
             destino.precio,
             destino.cupos_disponibles,
             destino.imagen
@@ -102,7 +100,6 @@ def actualizar_destino(id: int, destino):
         SET nombre = %s,
             descripcion = %s,
             ciudad = %s,
-            pais = %s,
             precio = %s,
             cupos_disponibles = %s,
             imagen = %s
@@ -113,7 +110,6 @@ def actualizar_destino(id: int, destino):
             destino.nombre,
             destino.descripcion,
             destino.ciudad,
-            destino.pais,
             destino.precio,
             destino.cupos_disponibles,
             destino.imagen,
