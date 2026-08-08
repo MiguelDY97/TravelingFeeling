@@ -1,50 +1,33 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from models.reserva import Reserva
-from services.reserva_service import (
-    listar_reservas,
-    buscar_reserva_por_id,
-    guardar_reserva,
-    modificar_reserva,
-    borrar_reserva
-)
+import services.reserva_service as reserva_service
 
 router = APIRouter(
     prefix="/reservas",
     tags=["Reservas"]
 )
 
-@router.get("/")
-def obtener_reservas():
-    return listar_reservas()
-
-@router.get("/{id}")
-def obtener_reserva(id: int):
-    reserva = buscar_reserva_por_id(id)
-
-    if reserva is None:
-        raise HTTPException(status_code=404, detail="Reserva no encontrada")
-
-    return reserva
-
 @router.post("/")
 def crear_reserva(reserva: Reserva):
-    guardar_reserva(reserva)
-    return {"mensaje": "Reserva creada correctamente"}
+
+    return reserva_service.crear_reserva(reserva)
+
+@router.get("/")
+def listar_reservas():
+
+    return reserva_service.obtener_reservas()
+
+@router.get("/{id}")
+def obtener_reserva_por_id(id: int):
+
+    return reserva_service.obtener_reserva_por_id(id)
 
 @router.put("/{id}")
 def actualizar_reserva(id: int, reserva: Reserva):
-    filas = modificar_reserva(id, reserva)
 
-    if filas == 0:
-        raise HTTPException(status_code=404, detail="Reserva no encontrada")
-
-    return {"mensaje": "Reserva actualizada correctamente"}
+    return reserva_service.actualizar_reserva(id, reserva)
 
 @router.delete("/{id}")
 def eliminar_reserva(id: int):
-    filas = borrar_reserva(id)
 
-    if filas == 0:
-        raise HTTPException(status_code=404, detail="Reserva no encontrada")
-
-    return {"mensaje": "Reserva eliminada correctamente"}
+    return reserva_service.eliminar_reserva(id)

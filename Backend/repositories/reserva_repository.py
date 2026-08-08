@@ -1,100 +1,156 @@
 from database.conexion import obtener_conexion
 
 def obtener_reservas():
-    conexion = obtener_conexion()
-    cursor = conexion.cursor(dictionary=True)
 
-    cursor.execute("SELECT * FROM reservas")
-    reservas = cursor.fetchall()
+    conexion = None
+    cursor = None
 
-    cursor.close()
-    conexion.close()
+    try:
 
-    return reservas
+        conexion = obtener_conexion()
+        cursor = conexion.cursor(dictionary=True)
 
+        cursor.execute("SELECT * FROM reservas")
 
-def obtener_reserva_por_id(id):
-    conexion = obtener_conexion()
-    cursor = conexion.cursor(dictionary=True)
+        return cursor.fetchall()
 
-    cursor.execute("SELECT * FROM reservas WHERE id = %s", (id,))
-    reserva = cursor.fetchone()
+    finally:
 
-    cursor.close()
-    conexion.close()
+        if cursor:
+            cursor.close()
 
-    return reserva
+        if conexion:
+            conexion.close()
 
+def obtener_reserva_por_id(id: int):
+
+    conexion = None
+    cursor = None
+
+    try:
+
+        conexion = obtener_conexion()
+        cursor = conexion.cursor(dictionary=True)
+
+        cursor.execute(
+            "SELECT * FROM reservas WHERE id = %s",
+            (id,)
+        )
+
+        return cursor.fetchone()
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conexion:
+            conexion.close()
 
 def crear_reserva(reserva):
-    conexion = obtener_conexion()
-    cursor = conexion.cursor()
 
-    sql = """
-    INSERT INTO reservas
-    (id_usuario, id_destino, fecha_reserva, cantidad_personas, estado)
-    VALUES (%s, %s, %s, %s, %s)
-    """
+    conexion = None
+    cursor = None
 
-    valores = (
-        reserva.id_usuario,
-        reserva.id_destino,
-        reserva.fecha_reserva,
-        reserva.cantidad_personas,
-        reserva.estado
-    )
+    try:
 
-    cursor.execute(sql, valores)
-    conexion.commit()
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
 
-    cursor.close()
-    conexion.close()
+        sql = """
+        INSERT INTO reservas
+        (id_usuario, id_destino, fecha_reserva, cantidad_personas, estado)
+        VALUES (%s, %s, %s, %s, %s)
+        """
 
+        valores = (
+            reserva.id_usuario,
+            reserva.id_destino,
+            reserva.fecha_reserva,
+            reserva.cantidad_personas,
+            reserva.estado
+        )
 
-def actualizar_reserva(id, reserva):
-    conexion = obtener_conexion()
-    cursor = conexion.cursor()
+        cursor.execute(sql, valores)
 
-    sql = """
-    UPDATE reservas
-    SET id_usuario=%s,
-        id_destino=%s,
-        fecha_reserva=%s,
-        cantidad_personas=%s,
-        estado=%s
-    WHERE id=%s
-    """
+        conexion.commit()
 
-    valores = (
-        reserva.id_usuario,
-        reserva.id_destino,
-        reserva.fecha_reserva,
-        reserva.cantidad_personas,
-        reserva.estado,
-        id
-    )
+        return cursor.lastrowid
 
-    cursor.execute(sql, valores)
-    conexion.commit()
+    finally:
 
-    filas = cursor.rowcount
+        if cursor:
+            cursor.close()
 
-    cursor.close()
-    conexion.close()
+        if conexion:
+            conexion.close()
 
-    return filas
+def actualizar_reserva(id: int, reserva):
 
+    conexion = None
+    cursor = None
 
-def eliminar_reserva(id):
-    conexion = obtener_conexion()
-    cursor = conexion.cursor()
+    try:
 
-    cursor.execute("DELETE FROM reservas WHERE id=%s", (id,))
-    conexion.commit()
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
 
-    filas = cursor.rowcount
+        sql = """
+        UPDATE reservas
+        SET id_usuario = %s,
+            id_destino = %s,
+            fecha_reserva = %s,
+            cantidad_personas = %s,
+            estado = %s
+        WHERE id = %s
+        """
 
-    cursor.close()
-    conexion.close()
+        valores = (
+            reserva.id_usuario,
+            reserva.id_destino,
+            reserva.fecha_reserva,
+            reserva.cantidad_personas,
+            reserva.estado,
+            id
+        )
 
-    return filas
+        cursor.execute(sql, valores)
+
+        conexion.commit()
+
+        return cursor.rowcount
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conexion:
+            conexion.close()
+
+def eliminar_reserva(id: int):
+
+    conexion = None
+    cursor = None
+
+    try:
+
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+
+        cursor.execute(
+            "DELETE FROM reservas WHERE id = %s",
+            (id,)
+        )
+
+        conexion.commit()
+
+        return cursor.rowcount
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conexion:
+            conexion.close()
