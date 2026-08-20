@@ -154,30 +154,3 @@ def eliminar_usuario(id: int):
 
         if conexion:
             conexion.close()
-
-def eliminar_destino(id: int):
-
-    conexion = None
-    cursor = None
-
-    try:
-
-        conexion = obtener_conexion()
-        cursor = conexion.cursor()
-
-        cursor.execute(
-            "DELETE FROM destinos WHERE id = %s",
-            (id,)
-        )
-
-        conexion.commit()
-
-        return cursor.rowcount
-
-    finally:
-
-        if cursor:
-            cursor.close()
-
-        if conexion:
-            conexion.close()
