@@ -1,11 +1,18 @@
 from fastapi import HTTPException
 import repositories.usuario_repository as usuario_repository
+from utils.seguridad import hashear_contraseña
+
 
 def obtener_usuarios():
 
     try:
 
-        return usuario_repository.obtener_usuarios()
+        usuarios = usuario_repository.obtener_usuarios()
+
+        for usuario in usuarios:
+            usuario.pop("contraseña", None)
+
+        return usuarios
 
     except Exception as e:
 
@@ -26,6 +33,8 @@ def obtener_usuario_por_id(id: int):
                 detail="Usuario no encontrado"
             )
 
+        usuario.pop("contraseña", None)
+
         return usuario
 
     except HTTPException:
@@ -43,6 +52,8 @@ def obtener_usuario_por_id(id: int):
 def crear_usuario(usuario):
 
     try:
+
+        usuario.contraseña = hashear_contraseña(usuario.contraseña)
 
         nuevo_id = usuario_repository.crear_usuario(usuario)
 
@@ -63,6 +74,8 @@ def crear_usuario(usuario):
 def actualizar_usuario(id: int, usuario):
 
     try:
+
+        usuario.contraseña = hashear_contraseña(usuario.contraseña)
 
         filas_actualizadas = usuario_repository.actualizar_usuario(id, usuario)
 
