@@ -22,6 +22,31 @@ def obtener_reservas():
         if conexion:
             conexion.close()
 
+def obtener_reservas_por_usuario(id_usuario: int):
+
+    conexion = None
+    cursor = None
+
+    try:
+
+        conexion = obtener_conexion()
+        cursor = conexion.cursor(dictionary=True)
+
+        cursor.execute(
+            "SELECT * FROM reservas WHERE id_usuario = %s",
+            (id_usuario,)
+        )
+
+        return cursor.fetchall()
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conexion:
+            conexion.close()
+
 def obtener_reserva_por_id(id: int):
 
     conexion = None

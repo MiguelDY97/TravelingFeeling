@@ -13,6 +13,18 @@ def obtener_reservas():
 
         raise HTTPException(status_code=500, detail="Ocurrió un error al obtener las reservas.")
 
+def obtener_reservas_por_usuario(id_usuario: int):
+
+    try:
+
+        return reserva_repository.obtener_reservas_por_usuario(id_usuario)
+
+    except Exception as e:
+
+        print(f"Error: {e}")
+
+        raise HTTPException(status_code=500, detail="Ocurrió un error al obtener las reservas del usuario.")
+
 def obtener_reserva_por_id(id: int):
 
     try:

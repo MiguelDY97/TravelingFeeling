@@ -17,6 +17,11 @@ def listar_reservas():
 
     return reserva_service.obtener_reservas()
 
+@router.get("/usuario/{id_usuario}")
+def listar_reservas_usuario(id_usuario: int):
+
+    return reserva_service.obtener_reservas_por_usuario(id_usuario)
+
 @router.get("/{id}")
 def obtener_reserva_por_id(id: int):
 
