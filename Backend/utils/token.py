@@ -1,9 +1,6 @@
 import jwt
 from datetime import datetime, timedelta, timezone
 
-# En un proyecto real esta clave NUNCA va escrita en el codigo,
-# se guarda en una variable de entorno (.env). La dejamos aqui
-# por simplicidad mientras el proyecto es de aprendizaje.
 CLAVE_SECRETA = "cambia_esta_clave_por_una_mas_segura"
 ALGORITMO = "HS256"
 MINUTOS_EXPIRACION = 60
