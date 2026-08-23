@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelingFeeling - Vive Colombia</title>
+    <title>Destinos - TravelingFeeling</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-listado">
@@ -11,7 +11,7 @@
     <div class="barra-superior">
         <h2>TravelingFeeling</h2>
         <div class="acciones">
-            <a href="destinos.html" class="boton-secundario">Destinos</a>
+            <a href="index.html" class="boton-secundario">Inicio</a>
             <a href="paquetes.html" class="boton-secundario">Paquetes</a>
             <span id="saludoUsuario"></span>
             <a href="misreservas.html" id="enlaceMisReservas" class="boton-secundario" style="display:none;">Mis reservas</a>
@@ -20,14 +20,11 @@
         </div>
     </div>
 
-    <div class="seccion-hero">
-        <h1>Vive Colombia como se siente</h1>
-        <p>Descubre destinos y paquetes turisticos en las ciudades y municipios mas lindos de Colombia.</p>
+    <div id="grillaDestinos" class="grilla-destinos">
+        <p>Cargando destinos...</p>
     </div>
 
     <script src="js/api.js"></script>
-    <script>
-        actualizarBarraSesion();
-    </script>
+    <script src="js/destinos.js"></script>
 </body>
 </html>
