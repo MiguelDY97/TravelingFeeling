@@ -47,6 +47,31 @@ def obtener_usuario_por_id(id: int):
         if conexion:
             conexion.close()
 
+def obtener_usuario_por_correo(correo: str):
+
+    conexion = None
+    cursor = None
+
+    try:
+
+        conexion = obtener_conexion()
+        cursor = conexion.cursor(dictionary=True)
+
+        cursor.execute(
+            "SELECT * FROM usuarios WHERE correo = %s",
+            (correo,)
+        )
+
+        return cursor.fetchone()
+
+    finally:
+
+        if cursor:
+            cursor.close()
+
+        if conexion:
+            conexion.close()
+
 def crear_usuario(usuario):
 
     conexion = None

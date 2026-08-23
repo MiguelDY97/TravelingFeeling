@@ -4,11 +4,13 @@ from routers.usuarios import router as usuarios_router
 from routers.destinos import router as destinos_router
 from routers.reservas import router as reservas_router
 from routers.paquetes import router as paquetes_router
+from routers.auth import router as auth_router
 
 app = FastAPI(
     title="TravelingFeeling API",
     version="1.0"
 )
+app.include_router(auth_router)
 app.include_router(usuarios_router)
 app.include_router(reservas_router)
 app.include_router(destinos_router)
