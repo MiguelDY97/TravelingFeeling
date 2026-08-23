@@ -9,10 +9,6 @@ ALGORITMO = "HS256"
 MINUTOS_EXPIRACION = 60
 
 def crear_token(datos: dict) -> str:
-    """
-    Genera un token JWT a partir de un diccionario (ej. id y correo
-    del usuario). El token incluye una fecha de expiracion.
-    """
 
     datos_token = datos.copy()
 
@@ -22,10 +18,6 @@ def crear_token(datos: dict) -> str:
     return jwt.encode(datos_token, CLAVE_SECRETA, algorithm=ALGORITMO)
 
 def verificar_token(token: str):
-    """
-    Decodifica un token y devuelve sus datos si es valido.
-    Si el token expiro o fue alterado, devuelve None.
-    """
 
     try:
 

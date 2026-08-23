@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from database.conexion import obtener_conexion
 from routers.usuarios import router as usuarios_router
 from routers.destinos import router as destinos_router
@@ -10,6 +11,21 @@ app = FastAPI(
     title="TravelingFeeling API",
     version="1.0"
 )
+
+origenes_permitidos = [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "null" 
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origenes_permitidos,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(auth_router)
 app.include_router(usuarios_router)
 app.include_router(reservas_router)
