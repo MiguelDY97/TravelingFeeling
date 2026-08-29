@@ -4,47 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear cuenta - TravelingFeeling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="pagina-auth">
 
-    <div class="contenedor-formulario">
-        <h1>Crear cuenta</h1>
+    <div class="auth-grid">
 
-        <div id="mensajeError" class="mensaje-error"></div>
+        <div class="auth-visual">
+            <img src="img/logo.jpg" alt="TravelingFeeling">
+            <h2>Únete a la aventura</h2>
+            <p>Crea tu cuenta y descubre los destinos más lindos de Colombia.</p>
+        </div>
 
-        <form id="formRegistro">
-            <div class="campo">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" required>
+        <div class="auth-form-side">
+            <div class="contenedor-formulario">
+                <h1>Crear cuenta</h1>
+
+                <div id="mensajeError" class="mensaje-error"></div>
+
+                <form id="formRegistro">
+                    <div class="fila-doble">
+                        <div class="campo campo-icono">
+                            <label for="nombre">Nombre</label>
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="nombre" required>
+                        </div>
+
+                        <div class="campo campo-icono">
+                            <label for="apellido">Apellido</label>
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="apellido" required>
+                        </div>
+                    </div>
+
+                    <div class="campo campo-icono">
+                        <label for="correo">Correo</label>
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="correo" required>
+                    </div>
+
+                    <div class="campo campo-icono">
+                        <label for="telefono">Teléfono</label>
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="tel" id="telefono" required>
+                        <p class="texto-ayuda">10 dígitos, sin espacios ni guiones</p>
+                    </div>
+
+                    <div class="campo campo-icono">
+                        <label for="contraseña">Contraseña</label>
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="contraseña" required minlength="8">
+                        <button type="button" class="boton-ojo" id="botonOjo"><i class="fa-solid fa-eye"></i></button>
+                        <p class="texto-ayuda">Mínimo 8 caracteres</p>
+                    </div>
+
+                    <button type="submit" class="boton-principal" id="botonSubmit">Registrarme</button>
+                </form>
+
+                <p class="enlace-secundario">
+                    ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
+                </p>
             </div>
+        </div>
 
-            <div class="campo">
-                <label for="apellido">Apellido</label>
-                <input type="text" id="apellido" required>
-            </div>
-
-            <div class="campo">
-                <label for="correo">Correo</label>
-                <input type="email" id="correo" required>
-            </div>
-
-            <div class="campo">
-                <label for="telefono">Teléfono</label>
-                <input type="tel" id="telefono" required>
-            </div>
-
-            <div class="campo">
-                <label for="contraseña">Contraseña</label>
-                <input type="password" id="contraseña" required minlength="8">
-            </div>
-
-            <button type="submit" class="boton-principal">Registrarme</button>
-        </form>
-
-        <p class="enlace-secundario">
-            ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
-        </p>
     </div>
 
     <script src="js/api.js"></script>

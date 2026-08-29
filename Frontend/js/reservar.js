@@ -5,22 +5,37 @@ if (!usuarioActual) {
 }
 
 const parametros = new URLSearchParams(window.location.search);
-const idDestino = parametros.get("id");
+const idDestinoParam = parametros.get("id");
+const idPaqueteParam = parametros.get("paquete");
 
-if (!idDestino) {
-    window.location.href = "index.html";
+if (!idDestinoParam && !idPaqueteParam) {
+    window.location.href = "destinos.html";
 }
 
 const tituloDestino = document.getElementById("tituloDestino");
 const formReservar = document.getElementById("formReservar");
 const mensajeError = document.getElementById("mensajeError");
 
-async function cargarNombreDestino() {
+document.getElementById("fecha_reserva").min = new Date().toISOString().split("T")[0];
+
+let idDestinoResuelto = idDestinoParam ? Number(idDestinoParam) : null;
+let idPaqueteResuelto = idPaqueteParam ? Number(idPaqueteParam) : null;
+
+async function cargarInformacion() {
 
     try {
 
-        const destino = await obtenerDestinoPorId(idDestino);
-        tituloDestino.textContent = `Reservar: ${destino.nombre}`;
+        if (idPaqueteParam) {
+
+            const paquete = await obtenerPaquetePorId(idPaqueteParam);
+            idDestinoResuelto = paquete.id_destino;
+            tituloDestino.textContent = `Reservar paquete: ${paquete.nombre}`;
+
+        } else {
+
+            const destino = await obtenerDestinoPorId(idDestinoParam);
+            tituloDestino.textContent = `Reservar: ${destino.nombre}`;
+        }
 
     } catch (error) {
 
@@ -36,7 +51,8 @@ formReservar.addEventListener("submit", async (evento) => {
 
     const nuevaReserva = {
         id_usuario: usuarioActual.id,
-        id_destino: Number(idDestino),
+        id_destino: idDestinoResuelto,
+        id_paquete: idPaqueteResuelto,
         fecha_reserva: document.getElementById("fecha_reserva").value,
         cantidad_personas: Number(document.getElementById("cantidad_personas").value),
         estado: "pendiente"
@@ -47,7 +63,7 @@ formReservar.addEventListener("submit", async (evento) => {
         await crearReserva(nuevaReserva);
 
         alert("Reserva creada correctamente");
-        window.location.href = "index.html";
+        window.location.href = "misreservas.html";
 
     } catch (error) {
 
@@ -56,4 +72,4 @@ formReservar.addEventListener("submit", async (evento) => {
     }
 });
 
-cargarNombreDestino();
+cargarInformacion();

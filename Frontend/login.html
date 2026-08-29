@@ -4,32 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión - TravelingFeeling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="pagina-auth">
 
-    <div class="contenedor-formulario">
-        <h1>Iniciar sesión</h1>
+    <div class="auth-grid">
 
-        <div id="mensajeError" class="mensaje-error"></div>
+        <div class="auth-visual">
+            <img src="img/logo.jpg" alt="TravelingFeeling">
+            <h2>Bienvenido de nuevo</h2>
+            <p>¿Listo para tu próxima aventura por Colombia?</p>
+        </div>
 
-        <form id="formLogin">
-            <div class="campo">
-                <label for="correo">Correo</label>
-                <input type="email" id="correo" required>
+        <div class="auth-form-side">
+            <div class="contenedor-formulario">
+                <h1>Iniciar sesión</h1>
+
+                <div id="mensajeError" class="mensaje-error"></div>
+
+                <form id="formLogin">
+                    <div class="campo campo-icono">
+                        <label for="correo">Correo</label>
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="correo" required>
+                    </div>
+
+                    <div class="campo campo-icono">
+                        <label for="contraseña">Contraseña</label>
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="contraseña" required>
+                        <button type="button" class="boton-ojo" id="botonOjo"><i class="fa-solid fa-eye"></i></button>
+                    </div>
+
+                    <button type="submit" class="boton-principal" id="botonSubmit">Ingresar</button>
+                </form>
+
+                <p class="enlace-secundario">
+                    ¿No tienes cuenta? <a href="registro.html">Regístrate</a>
+                </p>
             </div>
+        </div>
 
-            <div class="campo">
-                <label for="contraseña">Contraseña</label>
-                <input type="password" id="contraseña" required>
-            </div>
-
-            <button type="submit" class="boton-principal">Ingresar</button>
-        </form>
-
-        <p class="enlace-secundario">
-            ¿No tienes cuenta? <a href="registro.html">Regístrate</a>
-        </p>
     </div>
 
     <script src="js/api.js"></script>

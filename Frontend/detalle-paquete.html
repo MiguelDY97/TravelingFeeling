@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paquetes - TravelingFeeling</title>
+    <title>Detalle paquete - TravelingFeeling</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-listado">
 
     <div class="barra-superior">
-        <div class="logo-marca">
-            <a href="index.html"><img src="img/logo.jpg" alt="TravelingFeeling"></a>
-        </div>
+        <a href="index.html" class="logo-marca"><img src="img/logo.jpg" alt="TravelingFeeling"></a>
         <div class="acciones">
-            <a href="index.html" class="boton-secundario">Inicio</a>
             <a href="destinos.html" class="boton-secundario">Destinos</a>
+            <a href="paquetes.html" class="boton-secundario">Paquetes</a>
             <span id="saludoUsuario"></span>
             <a href="misreservas.html" id="enlaceMisReservas" class="boton-secundario" style="display:none;">Mis reservas</a>
             <button id="botonSalir" class="boton-secundario" style="display:none;">Salir</button>
             <a id="enlaceLogin" href="login.html" class="boton-secundario">Iniciar sesión</a>
         </div>
     </div>
+    <div class="franja-acento"></div>
 
-    <div id="grillaPaquetes" class="grilla-destinos">
-        <p>Cargando paquetes...</p>
+    <div id="detallePaquete" class="contenedor-detalle">
+        <div class="cargando">
+            <div class="spinner"></div>
+            <p>Cargando paquete...</p>
+        </div>
     </div>
 
     <div class="pie-pagina">
@@ -36,6 +39,6 @@
     </div>
 
     <script src="js/api.js"></script>
-    <script src="js/paquetes.js"></script>
+    <script src="js/detalle-paquete.js"></script>
 </body>
 </html>

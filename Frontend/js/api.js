@@ -1,5 +1,27 @@
 const API_URL = "http://127.0.0.1:8000";
 
+function rutaImagen(nombreArchivo) {
+
+    if (!nombreArchivo) return "";
+
+    return `img/${nombreArchivo}`;
+}
+
+function generarImagenRespaldo(texto) {
+
+    const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="400" height="240">
+            <rect width="400" height="240" fill="#0A4D68"/>
+            <text x="50%" y="50%" fill="#ffffff" font-family="sans-serif"
+                  font-size="16" text-anchor="middle" dominant-baseline="middle">
+                ${texto}
+            </text>
+        </svg>
+    `;
+
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
 async function loginRequest(correo, contraseña) {
 
     const respuesta = await fetch(`${API_URL}/auth/login`, {
@@ -109,6 +131,19 @@ async function obtenerPaquetes() {
 
     if (!respuesta.ok) {
         throw new Error(datos.detail || "Error al obtener paquetes");
+    }
+
+    return datos;
+}
+
+async function obtenerPaquetePorId(id) {
+
+    const respuesta = await fetch(`${API_URL}/paquetes/${id}`);
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+        throw new Error(datos.detail || "Error al obtener paquete");
     }
 
     return datos;

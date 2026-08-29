@@ -23,14 +23,19 @@ async function cargarDestinos() {
 
 function crearTarjetaDestino(destino) {
 
+    const nombreSeguro = destino.nombre.replace(/'/g, "");
+
     return `
         <div class="tarjeta-destino">
-            <img src="${destino.imagen || 'img/placeholder.jpg'}" alt="${destino.nombre}">
+            <a href="detalle.html?id=${destino.id}" class="imagen-con-badge">
+                <img src="${rutaImagen(destino.imagen)}" alt="${destino.nombre}"
+                     onerror="this.onerror=null; this.src=generarImagenRespaldo('${nombreSeguro}');">
+                <div class="badge-precio">$${Number(destino.precio).toLocaleString("es-CO")}</div>
+            </a>
             <div class="info">
-                <h3>${destino.nombre}</h3>
-                <p>${destino.ciudad}</p>
+                <h3><a href="detalle.html?id=${destino.id}">${destino.nombre}</a></h3>
+                <p><i class="fa-solid fa-location-dot"></i> ${destino.ciudad}</p>
                 <p>${destino.descripcion}</p>
-                <div class="precio">$${Number(destino.precio).toLocaleString("es-CO")}</div>
                 <button class="boton-principal" onclick="irAReservar(${destino.id})">Reservar</button>
             </div>
         </div>
@@ -47,4 +52,5 @@ function irAReservar(idDestino) {
     window.location.href = `reservar.html?id=${idDestino}`;
 }
 
+grillaDestinos.innerHTML = `<div class="cargando"><div class="spinner"></div><p>Cargando destinos...</p></div>`;
 cargarDestinos();
