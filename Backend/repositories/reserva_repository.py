@@ -84,13 +84,14 @@ def crear_reserva(reserva):
 
         sql = """
         INSERT INTO reservas
-        (id_usuario, id_destino, fecha_reserva, cantidad_personas, estado)
-        VALUES (%s, %s, %s, %s, %s)
+        (id_usuario, id_destino, id_paquete, fecha_reserva, cantidad_personas, estado)
+        VALUES (%s, %s, %s, %s, %s, %s)
         """
 
         valores = (
             reserva.id_usuario,
             reserva.id_destino,
+            reserva.id_paquete,
             reserva.fecha_reserva,
             reserva.cantidad_personas,
             reserva.estado
@@ -124,6 +125,7 @@ def actualizar_reserva(id: int, reserva):
         UPDATE reservas
         SET id_usuario = %s,
             id_destino = %s,
+            id_paquete = %s,
             fecha_reserva = %s,
             cantidad_personas = %s,
             estado = %s
@@ -133,6 +135,7 @@ def actualizar_reserva(id: int, reserva):
         valores = (
             reserva.id_usuario,
             reserva.id_destino,
+            reserva.id_paquete,
             reserva.fecha_reserva,
             reserva.cantidad_personas,
             reserva.estado,
