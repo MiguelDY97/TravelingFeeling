@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelingFeeling - Vive Colombia</title>
+    <title>Alojamientos - TravelingFeeling</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body class="pagina-listado">
 
     <div class="barra-superior">
-        <div class="logo-marca">
-            <img src="img/logo.jpg" alt="TravelingFeeling">
-        </div>
+        <a href="index.html" class="logo-marca"><img src="img/logo.jpg" alt="TravelingFeeling"></a>
         <div class="acciones">
             <a href="destinos.html" class="boton-secundario">Destinos</a>
             <a href="paquetes.html" class="boton-secundario">Paquetes</a>
@@ -25,29 +24,12 @@
             <a id="enlaceLogin" href="login.html" class="boton-secundario">Iniciar sesión</a>
         </div>
     </div>
-
     <div class="franja-acento"></div>
 
-    <div class="seccion-hero">
-        <h1>Vive Colombia como se siente</h1>
-        <p>Descubre destinos y paquetes turísticos en las ciudades y municipios más lindos de Colombia.</p>
-    </div>
-
-    <div class="seccion-destacados">
-        <div class="tarjeta-destacado">
-            <div class="icono">🏔️</div>
-            <h3>100% Colombia</h3>
-            <p>Destinos exclusivos en ciudades y municipios del país.</p>
-        </div>
-        <div class="tarjeta-destacado">
-            <div class="icono">🔒</div>
-            <h3>Reserva segura</h3>
-            <p>Tus datos y reservas protegidos en todo momento.</p>
-        </div>
-        <div class="tarjeta-destacado">
-            <div class="icono">💛</div>
-            <h3>Experiencias reales</h3>
-            <p>Paquetes armados para que vivas el sentimiento de viajar.</p>
+    <div id="grillaAlojamientos" class="grilla-destinos">
+        <div class="cargando">
+            <div class="spinner"></div>
+            <p>Cargando alojamientos...</p>
         </div>
     </div>
 
@@ -58,8 +40,6 @@
     </div>
 
     <script src="js/api.js"></script>
-    <script>
-        actualizarBarraSesion();
-    </script>
+    <script src="js/alojamientos.js"></script>
 </body>
 </html>

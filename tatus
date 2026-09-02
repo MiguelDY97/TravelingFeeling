@@ -1,0 +1,10 @@
+[33m890c474[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Validaciones mas estrictas
+[33mcdc5ddd[m token JWT
+[33m495d1d9[m CORS y token JWT
+[33m7b2530e[m Frontend basico conectado con base de datos
+[33me3e83aa[m endpoint para listar reservas por usuario
+[33m7225fd7[m agregar login con JWT
+[33ma633da0[m Implementacion de seguridad, hashear contraseñas con bcrypt y ocultarlas en las respuestas GET
+[33m6065808[m Funcion eliminada eliminar destino de usuario_repository
+[33mf823192[m CRUD con paquetes
+[33m9baddba[m Arreglo de la columna pais

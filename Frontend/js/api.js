@@ -149,6 +149,32 @@ async function obtenerPaquetePorId(id) {
     return datos;
 }
 
+async function obtenerAlojamientos() {
+
+    const respuesta = await fetch(`${API_URL}/alojamientos/`);
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+        throw new Error(datos.detail || "Error al obtener alojamientos");
+    }
+
+    return datos;
+}
+
+async function obtenerAlojamientoPorId(id) {
+
+    const respuesta = await fetch(`${API_URL}/alojamientos/${id}`);
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+        throw new Error(datos.detail || "Error al obtener alojamiento");
+    }
+
+    return datos;
+}
+
 function guardarSesion(token, usuario) {
     localStorage.setItem("token", token);
     localStorage.setItem("usuario", JSON.stringify(usuario));
@@ -177,6 +203,11 @@ function actualizarBarraSesion() {
     const botonSalir = document.getElementById("botonSalir");
     const enlaceLogin = document.getElementById("enlaceLogin");
     const enlaceMisReservas = document.getElementById("enlaceMisReservas");
+    const enlaceWhatsapp = document.getElementById("enlaceWhatsapp");
+
+    if (enlaceWhatsapp) {
+        enlaceWhatsapp.href = "https://wa.me/573148072654";
+    }
 
     if (usuario) {
 

@@ -1,6 +1,6 @@
 from database.conexion import obtener_conexion
 
-def listar_destinos():
+def obtener_alojamientos():
 
     conexion = None
     cursor = None
@@ -10,7 +10,7 @@ def listar_destinos():
         conexion = obtener_conexion()
         cursor = conexion.cursor(dictionary=True)
 
-        cursor.execute("SELECT * FROM destinos")
+        cursor.execute("SELECT * FROM alojamientos")
 
         return cursor.fetchall()
 
@@ -22,7 +22,7 @@ def listar_destinos():
         if conexion:
             conexion.close()
 
-def buscar_destino_por_id(id: int):
+def obtener_alojamiento_por_id(id: int):
 
     conexion = None
     cursor = None
@@ -33,7 +33,7 @@ def buscar_destino_por_id(id: int):
         cursor = conexion.cursor(dictionary=True)
 
         cursor.execute(
-            "SELECT * FROM destinos WHERE id = %s",
+            "SELECT * FROM alojamientos WHERE id = %s",
             (id,)
         )
 
@@ -47,7 +47,7 @@ def buscar_destino_por_id(id: int):
         if conexion:
             conexion.close()
 
-def crear_destino(destino):
+def crear_alojamiento(alojamiento):
 
     conexion = None
     cursor = None
@@ -58,18 +58,19 @@ def crear_destino(destino):
         cursor = conexion.cursor()
 
         sql = """
-        INSERT INTO destinos
-        (nombre, descripcion, ciudad, precio, cupos_disponibles, imagen)
-        VALUES (%s, %s, %s, %s, %s, %s)
+        INSERT INTO alojamientos
+        (nombre, descripcion, ciudad, precio, capacidad_personas, cupos_disponibles, imagen)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
         """
 
         valores = (
-            destino.nombre,
-            destino.descripcion,
-            destino.ciudad,
-            destino.precio,
-            destino.cupos_disponibles,
-            destino.imagen
+            alojamiento.nombre,
+            alojamiento.descripcion,
+            alojamiento.ciudad,
+            alojamiento.precio,
+            alojamiento.capacidad_personas,
+            alojamiento.cupos_disponibles,
+            alojamiento.imagen
         )
 
         cursor.execute(sql, valores)
@@ -86,7 +87,7 @@ def crear_destino(destino):
         if conexion:
             conexion.close()
 
-def actualizar_destino(id: int, destino):
+def actualizar_alojamiento(id: int, alojamiento):
 
     conexion = None
     cursor = None
@@ -97,23 +98,25 @@ def actualizar_destino(id: int, destino):
         cursor = conexion.cursor()
 
         sql = """
-        UPDATE destinos
+        UPDATE alojamientos
         SET nombre = %s,
             descripcion = %s,
             ciudad = %s,
             precio = %s,
+            capacidad_personas = %s,
             cupos_disponibles = %s,
             imagen = %s
         WHERE id = %s
         """
 
         valores = (
-            destino.nombre,
-            destino.descripcion,
-            destino.ciudad,
-            destino.precio,
-            destino.cupos_disponibles,
-            destino.imagen,
+            alojamiento.nombre,
+            alojamiento.descripcion,
+            alojamiento.ciudad,
+            alojamiento.precio,
+            alojamiento.capacidad_personas,
+            alojamiento.cupos_disponibles,
+            alojamiento.imagen,
             id
         )
 
@@ -131,7 +134,7 @@ def actualizar_destino(id: int, destino):
         if conexion:
             conexion.close()
 
-def eliminar_destino(id: int):
+def eliminar_alojamiento(id: int):
 
     conexion = None
     cursor = None
@@ -142,7 +145,7 @@ def eliminar_destino(id: int):
         cursor = conexion.cursor()
 
         cursor.execute(
-            "DELETE FROM destinos WHERE id = %s",
+            "DELETE FROM alojamientos WHERE id = %s",
             (id,)
         )
 
